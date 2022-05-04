@@ -121,7 +121,6 @@ class PdfReport:
         bill_dict = bill.get_bill_log()
         total = 0
 
-        # Have bill_pay function return name + amount owed. Then cut this repeated code out.
         for name, day in bill_dict['Flatmates'].items():
             total += day
 
