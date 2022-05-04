@@ -38,28 +38,31 @@ class CreateBill:
         self._period = period
         self._amount = amount
         self._bill_log = {}
-        self.flatmate_log = {}
+        self._flatmate_log = {}
 
-    # getter for period
     def get_period(self):
+        """Returns current billing period"""
         return self._period
 
-    # getter for amount
     def get_amount(self):
+        """Returns current amount owed"""
         return self._amount
 
-    # getter for bill log dict
     def get_bill_log(self):
+        """Returns bill log"""
         return self._bill_log
 
-    # Logs month and amount due
     def log_bill(self, flatmate):
+        """logs the current bill
+        :param flatmate: flatmate object
+        """
         self.flatmate_log[flatmate.get_name()] = flatmate.get_days_in_house()
         self._bill_log['Date period'] = self.get_period()
         self._bill_log['Amount'] = self.get_amount()
         self._bill_log['Flatmates'] = self.flatmate_log
 
     def bill_pay(self):
+        """Calculates how much is owed"""
         total = 0
         for name, day in self._bill_log['Flatmates'].items():
             total += day
@@ -69,19 +72,24 @@ class CreateBill:
             print(f"{name} stayed in the flat {day} days and owes ${amount_owed} of the ${self.get_amount()} total.")
 
     def math_magic(self, total, day):
+        """Method for calculating how much people owe"""
         div = (day / total)
         amount_owed = self._amount * div
         return round(amount_owed, 2)
 
 
 class BillHistory:
+    """Class to log bill history"""
     def __init__(self):
-        self.db = {}
+        """ Constructor for class """
+        self._db = {}
 
     def history(self):
+        """Returns log of bill history"""
         return self.db
 
     def log_history(self, bill):
+        """Logs bill history"""
         self.db[bill.get_period()] = bill.get_bill_log()
 
 
