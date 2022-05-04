@@ -210,8 +210,6 @@ def flatmate_days_in_home(date, name):
     # Convert str date to an int to check if days_in_home is not greater than the days in invoice month.
     date_month = int(date[:2])
     date_year = int(date[3:])
-
-    # List to append tuples of (name, days_in_home)
     days_in_home = 0
 
     while True:
